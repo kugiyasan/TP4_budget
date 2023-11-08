@@ -1,18 +1,16 @@
-name: Python package
-on: [push]
+name: Python package  # le nom de l'action affichée sur Github
+on: [push]  # spécifie l'évenement qui déclenche la job
 jobs:
-  build:
+  build:  # job nommée "build", qui installe les packages et roule les tests
 
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-        with:
-            fetch-depth: 0
-      - name: Setup Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: "3.9"
-      - name: Install packages
-        run: pip install -r requirements.txt
-      - name: Run tests
-        run: python myscript.py
+    runs-on: ubuntu-latest  # le runner va être une machine Linux avec la version Ubuntu la plus récente
+    steps:  # chaque tiret ci-dessous décrit une étape qui va être executé par le runner
+      - uses: actions/checkout@v3  # exécute l'action checkout, qui permet de pull notre repo sur le bon commit
+      - name: Setup Python  # nom de l'étape
+        uses: actions/setup-python@v4  # s'assure que Python est installé sur le runner
+        with:  # passe un paramètre à l'action
+          python-version: "3.9"  # installe python 3.9
+      - name: Install packages  # nom de l'étape
+        run: pip install -r requirements.txt  # commande shell à exécuter
+      - name: Run tests  # nom de l'étape
+        run: python myscript.py  # commande shell à exécuter
